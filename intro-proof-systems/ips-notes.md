@@ -355,20 +355,20 @@ Certain rules **discharge** assumptions: the assumption ceases to be open once t
 $$\frac{A \quad B}{A \wedge B}\ \wedge\text{I} \qquad \frac{A \wedge B}{A}\ \wedge\text{E} \qquad \frac{A \wedge B}{B}\ \wedge\text{E}$$
 
 **Disjunction:**
-$$\frac{A}{A \vee B}\ \vee\text{I} \qquad \frac{B}{A \vee B}\ \vee\text{I} \qquad \frac{A \vee B \quad \begin{matrix}[A] \\ \vdots \\ C\end{matrix} \quad \begin{matrix}[B] \\ \vdots \\ C\end{matrix}}{C}\ \vee\text{E}$$
+$$\frac{A}{A \vee B}\ \vee\text{I} \qquad \frac{B}{A \vee B}\ \vee\text{I} \qquad \frac{A \vee B \quad \begin{matrix}{[}A{]} \\ \vdots \\ C\end{matrix} \quad \begin{matrix}{[}B{]} \\ \vdots \\ C\end{matrix}}{C}\ \vee\text{E}$$
 
 The $\vee$E rule formalises **proof by cases**: both $[A]$ and $[B]$ are discharged.
 
 **Implication:**
-$$\frac{\begin{matrix}[A] \\ \vdots \\ B\end{matrix}}{A \to B}\ {\to}\text{I} \qquad \frac{A \to B \quad A}{B}\ {\to}\text{E (modus ponens)}$$
+$$\frac{\begin{matrix}{[}A{]} \\ \vdots \\ B\end{matrix}}{A \to B}\ {\to}\text{I} \qquad \frac{A \to B \quad A}{B}\ {\to}\text{E (modus ponens)}$$
 
 To prove $A \to B$: assume $[A]$, derive $B$, then discharge $[A]$.
 
 **Negation and Falsehood:**
-$$\frac{\begin{matrix}[A] \\ \vdots \\ \bot\end{matrix}}{\neg A}\ \neg\text{I} \qquad \frac{\neg A \quad A}{\bot}\ \neg\text{E}$$
+$$\frac{\begin{matrix}{[}A{]} \\ \vdots \\ \bot\end{matrix}}{\neg A}\ \neg\text{I} \qquad \frac{\neg A \quad A}{\bot}\ \neg\text{E}$$
 
 **From $\bot$, two options govern which logic we are in:**
-$$\frac{\bot}{D}\ \bot\text{J (intuitionistic, }ex\ falso\text{)} \qquad \frac{\begin{matrix}[\neg A] \\ \vdots \\ \bot\end{matrix}}{A}\ \bot\text{K (classical, }reductio\text{)}$$
+$$\frac{\bot}{D}\ \bot\text{J}\quad(\textit{ex falso}) \qquad \frac{\begin{matrix}{[}\neg A{]} \\ \vdots \\ \bot\end{matrix}}{A}\ \bot\text{K}\quad(\textit{reductio})$$
 
 - The system $\{\to\text{I}, \to\text{E}, \wedge\text{I}, \wedge\text{E}, \vee\text{I}, \vee\text{E}, \neg\text{I}, \neg\text{E}, \bot\text{J}\}$ is **intuitionistic** natural deduction (corresponds to $\mathbf{J}_0$).
 - Adding $\bot\text{K}$ gives the **classical** natural deduction system (corresponds to $\mathbf{K}_0$).
@@ -382,12 +382,10 @@ $$\frac{\dfrac{B \wedge A}{A}\ \wedge\text{E} \quad \dfrac{B \wedge A}{B}\ \wedg
 Since $B \wedge A$ remains open, this is a deduction but not a proof.
 
 **Example 24 (Intuitionistic contraposition).** Proof of $(A \to B) \to (\neg B \to \neg A)$ using only intuitionistic rules:
-$$\dfrac{
-  \dfrac{[A \to B]^1 \quad [A]^3}{B}\ {\to}\text{E}
-  \quad [\neg B]^2
-}{\bot}\ \neg\text{E}
-$$
-$$\dfrac{\dfrac{\vdots}{\neg A}\ \neg\text{I}^3}{\neg B \to \neg A}\ {\to}\text{I}^2 \qquad \text{then} \qquad \dfrac{\vdots}{(A \to B) \to (\neg B \to \neg A)}\ {\to}\text{I}^1$$
+
+$$\dfrac{\dfrac{\dfrac{\dfrac{\dfrac{[A \to B]^1 \quad [A]^3}{B}\ {\to}\text{E} \quad [\neg B]^2}{\bot}\ \neg\text{E}}{\neg A}\ \neg\text{I}^3}{\neg B \to \neg A}\ {\to}\text{I}^2}{(A \to B) \to (\neg B \to \neg A)}\ {\to}\text{I}^1$$
+
+Reading bottom-up: ${\to}\text{I}^1$ assumes $[A \to B]^1$, then ${\to}\text{I}^2$ assumes $[\neg B]^2$, then $\neg\text{I}^3$ assumes $[A]^3$ and derives $\bot$ (from $B$ via ${\to}\text{E}$, and $[\neg B]^2$ via $\neg\text{E}$). All three assumptions are discharged.
 
 ### 6.2 Sequent Calculus
 
@@ -663,7 +661,7 @@ $$\frac{A(c)}{\forall x\, A[x/c]}\ \forall\text{I} \qquad \frac{\forall x\, A(x)
 The side-condition on $\forall\text{I}$ is essential. Without it, we could "prove" $A(c) \to \forall x\, A(x)$ (a property holding for a single element implies it holds universally), which is unsound.
 
 **Existential quantification:**
-$$\frac{A[t/c]}{\exists x\, A[x/c]}\ \exists\text{I} \qquad \frac{\exists x\, A(x) \quad \begin{matrix}[A(c)] \\ \vdots \\ C\end{matrix}}{C}\ \exists\text{E}$$
+$$\frac{A[t/c]}{\exists x\, A[x/c]}\ \exists\text{I} \qquad \frac{\exists x\, A(x) \quad \begin{matrix}{[}A(c){]} \\ \vdots \\ C\end{matrix}}{C}\ \exists\text{E}$$
 
 - $\exists\text{I}$: exhibit a specific term $t$ satisfying $A$, then conclude $\exists x\, A[x/c]$.
 - $\exists\text{E}$: "there exists some $c$ satisfying $A(c)$; call it $c$; if we can derive $C$ from $A(c)$, then $C$ holds." Two side-conditions:

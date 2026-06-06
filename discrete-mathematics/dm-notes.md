@@ -54,7 +54,7 @@ A **set** is an unordered collection of distinct objects (elements). Notation:
 | Intersection | $A \cap B$ | $\{x : x \in A \text{ and } x \in B\}$ |
 | Difference | $A \setminus B$ | $\{x : x \in A \text{ and } x \notin B\}$ |
 | Complement | $\overline{A}$ or $A^c$ | $U \setminus A$ (relative to universe $U$) |
-| Power set | $\mathcal{P}(A)$ | $\{S : S \subseteq A\}$; has $2^{|A|}$ elements |
+| Power set | $\mathcal{P}(A)$ | $\{S : S \subseteq A\}$; has $2^{\lvert A\rvert }$ elements |
 | Cartesian product | $A \times B$ | $\{(a,b) : a \in A,\, b \in B\}$ |
 
 **De Morgan's Laws:**
@@ -63,7 +63,7 @@ $$\overline{A \cup B} = \overline{A} \cap \overline{B}, \qquad \overline{A \cap 
 **Distributivity:**
 $$A \cap (B \cup C) = (A \cap B) \cup (A \cap C), \qquad A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$$
 
-**Inclusion-Exclusion (2 sets):** $|A \cup B| = |A| + |B| - |A \cap B|$
+**Inclusion-Exclusion (2 sets):** $\lvert A \cup B\rvert  = \lvert A\rvert  + \lvert B\rvert  - \lvert A \cap B\rvert $
 
 ### 1.3 Mathematical Induction
 
@@ -92,7 +92,7 @@ A **function** $f: A \to B$ assigns to each $a \in A$ a unique $b \in B$.
 
 | Type | Definition | Equivalent condition |
 |------|------------|----------------------|
-| Injective (one-to-one) | $f(a_1) = f(a_2) \Rightarrow a_1 = a_2$ | $|\text{Im}(f)| = |A|$ |
+| Injective (one-to-one) | $f(a_1) = f(a_2) \Rightarrow a_1 = a_2$ | $\lvert \text{Im}(f)\rvert  = \lvert A\rvert $ |
 | Surjective (onto) | $\forall b \in B, \exists a: f(a) = b$ | $\text{Im}(f) = B$ |
 | Bijective | injective and surjective | has a two-sided inverse |
 
@@ -102,15 +102,15 @@ A **function** $f: A \to B$ assigns to each $a \in A$ a unique $b \in B$.
 
 ### 2.2 Counting via Functions
 
-- **Injections $A \to B$** exist iff $|A| \leq |B|$.
-- **Bijections $A \to B$** exist iff $|A| = |B|$.
-- **Surjections $A \to B$** exist iff $|A| \geq |B|$ (finite case).
+- **Injections $A \to B$** exist iff $\lvert A\rvert  \leq \lvert B\rvert $.
+- **Bijections $A \to B$** exist iff $\lvert A\rvert  = \lvert B\rvert $.
+- **Surjections $A \to B$** exist iff $\lvert A\rvert  \geq \lvert B\rvert $ (finite case).
 
-This connects directly to the Pigeonhole Principle (L12): no injection $f: A \to B$ when $|A| > |B|$.
+This connects directly to the Pigeonhole Principle (L12): no injection $f: A \to B$ when $\lvert A\rvert  > \lvert B\rvert $.
 
 ### 2.3 Cardinality
 
-For finite sets: $|A \times B| = |A| \cdot |B|$ and $|\mathcal{P}(A)| = 2^{|A|}$.
+For finite sets: $\lvert A \times B\rvert  = \lvert A\rvert  \cdot \lvert B\rvert $ and $\lvert \mathcal{P}(A)\rvert  = 2^{\lvert A\rvert }$.
 
 For infinite sets, $A$ and $B$ have the **same cardinality** if there exists a bijection $A \to B$. $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$ are countably infinite; $\mathbb{R}$ is uncountable (Cantor's diagonal argument).
 
@@ -121,7 +121,7 @@ For infinite sets, $A$ and $B$ have the **same cardinality** if there exists a b
 ### 3.1 Basic Counting Principles
 
 - **Product rule:** If task 1 has $m$ outcomes and task 2 has $n$ outcomes (independent), total = $mn$.
-- **Sum rule:** If $A$ and $B$ are disjoint sets of options, total = $|A| + |B|$.
+- **Sum rule:** If $A$ and $B$ are disjoint sets of options, total = $\lvert A\rvert  + \lvert B\rvert $.
 
 ### 3.2 Permutations
 
@@ -161,8 +161,8 @@ Equivalently: non-negative integer solutions to $x_1 + x_2 + \cdots + x_n = k$ i
 Count the same quantity in two different ways to derive identities.
 
 **Example — Handshaking lemma:** In a graph $G = (V, E)$,
-$$\sum_{v \in V} d(v) = 2|E|$$
-Count endpoint-pairs: $|E|$ edges, each with 2 endpoints = $2|E|$ endpoints. Also, vertex $v$ contributes $d(v)$ endpoints. $\square$
+$$\sum_{v \in V} d(v) = 2\lvert E\rvert $$
+Count endpoint-pairs: $\lvert E\rvert $ edges, each with 2 endpoints = $2\lvert E\rvert $ endpoints. Also, vertex $v$ contributes $d(v)$ endpoints. $\square$
 
 **Example — Vandermonde's identity:**
 $$\sum_{j=0}^{k} \binom{m}{j}\binom{n}{k-j} = \binom{m+n}{k}$$
@@ -418,7 +418,7 @@ Cancelling $(p-1)!$ (which is coprime to $p$): $a^{p-1} \equiv 1 \pmod{p}$. $\sq
 
 ### 11.1 Euler's Totient Function
 
-$$\varphi(n) = |\{k : 1 \leq k \leq n,\, \gcd(k, n) = 1\}|$$
+$$\varphi(n) = \lvert \{k : 1 \leq k \leq n,\, \gcd(k, n) = 1\}\rvert $$
 
 **Key values:**
 - $\varphi(p) = p - 1$ for prime $p$
@@ -493,7 +493,7 @@ Write $n - 1 = 2^r k$ ($k$ odd). For prime $n$, any $a$ with $\gcd(a,n)=1$ must 
 
 **Pigeonhole Principle:** You cannot place $n+1$ pigeons into $n$ boxes without at least two pigeons in the same box.
 
-Equivalently: there is **no injection** $f: A \to B$ when $|A| > |B|$.
+Equivalently: there is **no injection** $f: A \to B$ when $\lvert A\rvert  > \lvert B\rvert $.
 
 **The hard part:** Identifying what the "pigeons" and "boxes" are.
 
@@ -537,9 +537,9 @@ For $\gcd(a,n)=1$, $\exists k$ such that $a^k \equiv 1 \pmod{n}$.
 *Proof:* The $n+1$ powers $1, a, a^2, \ldots, a^n$ have at most $n$ distinct residues mod $n$; by pigeonhole $a^i \equiv a^j$ for $i > j$, and since $\gcd(a,n)=1$ we can cancel to get $a^{i-j} \equiv 1$. $\square$
 
 **Dirichlet's Approximation Theorem:**
-For irrational $\alpha \in (0,1)$ and $N > 1$, $\exists$ integers $m, k$ with $1 \leq m \leq N$ and $|m\alpha - k| \leq 1/N$.
+For irrational $\alpha \in (0,1)$ and $N > 1$, $\exists$ integers $m, k$ with $1 \leq m \leq N$ and $\lvert m\alpha - k\rvert  \leq 1/N$.
 
-*Proof:* Consider fractional parts $\{0\}, \{\alpha\}, \{2\alpha\}, \ldots, \{N\alpha\}$ — these are $N+1$ points in $[0,1]$. Divide $[0,1]$ into $N$ intervals of length $1/N$. By pigeonhole, two fractional parts land in the same interval: $|\{i\alpha\} - \{j\alpha\}| \leq 1/N$ for $i > j$, giving $|(i-j)\alpha - ({\lfloor i\alpha \rfloor - \lfloor j\alpha \rfloor})| \leq 1/N$. Set $m = i-j$, $k = \lfloor i\alpha\rfloor - \lfloor j\alpha\rfloor$. $\square$
+*Proof:* Consider fractional parts $\{0\}, \{\alpha\}, \{2\alpha\}, \ldots, \{N\alpha\}$ — these are $N+1$ points in $[0,1]$. Divide $[0,1]$ into $N$ intervals of length $1/N$. By pigeonhole, two fractional parts land in the same interval: $\lvert \{i\alpha\} - \{j\alpha\}\rvert  \leq 1/N$ for $i > j$, giving $\lvert (i-j)\alpha - ({\lfloor i\alpha \rfloor - \lfloor j\alpha \rfloor})\rvert  \leq 1/N$. Set $m = i-j$, $k = \lfloor i\alpha\rfloor - \lfloor j\alpha\rfloor$. $\square$
 
 **Erdős–Szekeres Theorem:**
 Any sequence of $n \geq (r-1)(s-1)+1$ distinct real numbers contains either an increasing subsequence of length $r$ or a decreasing subsequence of length $s$.
@@ -646,7 +646,7 @@ A minimum element is always minimal, but minimal elements need not be unique or 
 
 **Theorem:** Every finite poset $(A, \preceq)$ can be extended to a total order $(A, \leq)$ such that $a \preceq b \Rightarrow a \leq b$.
 
-**Proof:** Induction on $n = |A|$. Take a minimal element $a_1$; by inductive hypothesis extend the order on $A \setminus \{a_1\}$; set $a_1 \leq a_2 \leq \cdots \leq a_n$. $\square$
+**Proof:** Induction on $n = \lvert A\rvert $. Take a minimal element $a_1$; by inductive hypothesis extend the order on $A \setminus \{a_1\}$; set $a_1 \leq a_2 \leq \cdots \leq a_n$. $\square$
 
 **Application:** Topological sorting (see DAA).
 
@@ -672,7 +672,7 @@ For an edge $e = (u, v)$: $u, v$ are **endpoints**, $e$ is **incident** to $u$ a
 
 ### 14.2 Standard Graphs
 
-- **Complete graph $K_n$:** $n$ vertices, every pair connected. $|E| = \binom{n}{2}$.
+- **Complete graph $K_n$:** $n$ vertices, every pair connected. $\lvert E\rvert  = \binom{n}{2}$.
 - **Cycle $C_n$:** vertices $v_1, \ldots, v_n$; edges $\{v_i, v_{i+1}\}$ for $i = 1, \ldots, n$ (with $v_{n+1} = v_1$).
 - **Path graph $P_n$:** $n$ vertices in a line.
 
@@ -692,10 +692,10 @@ $G' = (V', E')$ is a **subgraph** of $G$ if $V' \subseteq V$ and $E' \subseteq E
 
 ### 14.5 Degrees and the Handshaking Lemma
 
-The **degree** $d(v) = |N(v)|$ where $N(v) = \{u : \{v,u\} \in E\}$ is the neighbourhood.
+The **degree** $d(v) = \lvert N(v)\rvert $ where $N(v) = \{u : \{v,u\} \in E\}$ is the neighbourhood.
 
 **Handshaking Lemma:**
-$$\sum_{v \in V} d(v) = 2|E|$$
+$$\sum_{v \in V} d(v) = 2\lvert E\rvert $$
 
 **Corollary:** The number of odd-degree vertices is even.
 
@@ -720,7 +720,7 @@ A **tree** is a connected graph with no cycles. A **forest** is a graph whose co
 
 A **leaf** is a vertex of degree 1.
 
-**Key Property:** Every tree $T = (V, E)$ with $|V| > 1$ contains a leaf.
+**Key Property:** Every tree $T = (V, E)$ with $\lvert V\rvert  > 1$ contains a leaf.
 
 **Proof:** Take the longest path $v_1, \ldots, v_k$ in $T$ (with $k \geq 2$). Claim $v_1$ has degree 1. If $v_1$ has another neighbour $v_i$ (with $i \geq 3$), that gives a cycle. If it has a neighbour $u \notin \{v_2,\ldots,v_k\}$, we can extend the path — contradiction. $\square$
 
@@ -736,7 +736,7 @@ A **leaf** is a vertex of degree 1.
 
 $G = (V, E)$ is **bipartite** if $V = A \cup B$ with $A \cap B = \emptyset$ and every edge has one endpoint in $A$ and one in $B$. The pair $\{A, B\}$ is a **bipartition** (or the parts).
 
-**Complete bipartite graph $K_{m,n}$:** all $mn$ possible edges between $A$ ($|A|=m$) and $B$ ($|B|=n$).
+**Complete bipartite graph $K_{m,n}$:** all $mn$ possible edges between $A$ ($\lvert A\rvert =m$) and $B$ ($\lvert B\rvert =n$).
 
 **Equivalent characterisation:** $G$ is bipartite iff it can be properly 2-coloured (vertices coloured red/green so no edge is monochromatic).
 
@@ -774,7 +774,7 @@ $G$ is **$q$-colourable** if it admits a proper $q$-colouring.
 
 **Proposition:** If $G$ is connected with max-degree $\leq \Delta$ and contains a vertex of degree $< \Delta$, then $G$ is $\Delta$-colourable.
 
-**Proof:** Induction on $|V|$; find a vertex $u$ of degree $< \Delta$, remove it, colour $G - u$ by induction, then re-insert $u$ — it has $< \Delta$ neighbours so a colour is available. $\square$
+**Proof:** Induction on $\lvert V\rvert $; find a vertex $u$ of degree $< \Delta$, remove it, colour $G - u$ by induction, then re-insert $u$ — it has $< \Delta$ neighbours so a colour is available. $\square$
 
 **Brooks' Theorem:** A connected graph $G$ with max-degree $\Delta$ is $\Delta$-colourable unless $G = K_{\Delta+1}$ or ($\Delta = 2$ and $G$ is an odd cycle).
 
@@ -803,26 +803,26 @@ A planar drawing divides the plane into regions called **faces** (including the 
 Each face $f \in F$ is bounded by a **closed walk**; its **degree** $d(f)$ is the length of this walk.
 
 **Face-Edge Formula:**
-$$\sum_{f \in F} d(f) = 2|E|$$
+$$\sum_{f \in F} d(f) = 2\lvert E\rvert $$
 
 **Proof:** Each edge is on the boundary of exactly two faces (or appears twice in one face's boundary), so each edge is counted twice. $\square$
 
 ### 16.3 Euler's Formula
 
 **Theorem:** For any **connected** planar graph $G = (V, E)$ with face set $F$:
-$$|V| - |E| + |F| = 2$$
+$$\lvert V\rvert  - \lvert E\rvert  + \lvert F\rvert  = 2$$
 
-**Proof:** Induction on $|E|$.
-- **Base case:** $G$ is a tree ($|E| = |V|-1$, $|F| = 1$): $|V| - (|V|-1) + 1 = 2$. $\checkmark$
-- **Inductive step:** $G$ contains a cycle; let $e$ be an edge on a cycle. Then $G \setminus e$ has $|V|$ vertices, $|E|-1$ edges, and $|F|-1$ faces (merging two faces). By induction $|V| - (|E|-1) + (|F|-1) = 2$, so $|V| - |E| + |F| = 2$. $\square$
+**Proof:** Induction on $\lvert E\rvert $.
+- **Base case:** $G$ is a tree ($\lvert E\rvert  = \lvert V\rvert -1$, $\lvert F\rvert  = 1$): $\lvert V\rvert  - (\lvert V\rvert -1) + 1 = 2$. $\checkmark$
+- **Inductive step:** $G$ contains a cycle; let $e$ be an edge on a cycle. Then $G \setminus e$ has $\lvert V\rvert $ vertices, $\lvert E\rvert -1$ edges, and $\lvert F\rvert -1$ faces (merging two faces). By induction $\lvert V\rvert  - (\lvert E\rvert -1) + (\lvert F\rvert -1) = 2$, so $\lvert V\rvert  - \lvert E\rvert  + \lvert F\rvert  = 2$. $\square$
 
 ### 16.4 Non-Planarity of $K_5$ and $K_{3,3}$
 
 **$K_5$ is non-planar:**
-$|V|=5$, $|E|=10$. If planar: each face has degree $\geq 3$, so $3|F| \leq 2|E| = 20$, giving $|F| \leq 6$. But Euler gives $|F| = 2 - 5 + 10 = 7 > 6$. Contradiction. $\square$
+$\lvert V\rvert =5$, $\lvert E\rvert =10$. If planar: each face has degree $\geq 3$, so $3\lvert F\rvert  \leq 2\lvert E\rvert  = 20$, giving $\lvert F\rvert  \leq 6$. But Euler gives $\lvert F\rvert  = 2 - 5 + 10 = 7 > 6$. Contradiction. $\square$
 
 **$K_{3,3}$ is non-planar:**
-$|V|=6$, $|E|=9$. Since $K_{3,3}$ is bipartite, every cycle has length $\geq 4$, so each face has degree $\geq 4$. Then $4|F| \leq 2|E| = 18$, so $|F| \leq 4$. But Euler gives $|F| = 2 - 6 + 9 = 5 > 4$. Contradiction. $\square$
+$\lvert V\rvert =6$, $\lvert E\rvert =9$. Since $K_{3,3}$ is bipartite, every cycle has length $\geq 4$, so each face has degree $\geq 4$. Then $4\lvert F\rvert  \leq 2\lvert E\rvert  = 18$, so $\lvert F\rvert  \leq 4$. But Euler gives $\lvert F\rvert  = 2 - 6 + 9 = 5 > 4$. Contradiction. $\square$
 
 ### 16.5 Kuratowski's Theorem
 
