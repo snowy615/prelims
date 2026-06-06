@@ -170,16 +170,23 @@ $$\sum_{j=0}^{k} \binom{m}{j}\binom{n}{k-j} = \binom{m+n}{k}$$
 
 ### 4.2 Inclusion-Exclusion Principle
 
-$$|A_1 \cup A_2 \cup \cdots \cup A_n| = \sum_i |A_i| - \sum_{i < j}|A_i \cap A_j| + \sum_{i<j<k}|A_i \cap A_j \cap A_k| - \cdots + (-1)^{n+1}|A_1 \cap \cdots \cap A_n|$$
+$$\lvert A_1 \cup \cdots \cup A_n \rvert = \sum_i \lvert A_i \rvert - \sum_{i < j}\lvert A_i \cap A_j \rvert + \sum_{i<j<k}\lvert A_i \cap A_j \cap A_k \rvert - \cdots + (-1)^{n+1}\lvert A_1 \cap \cdots \cap A_n \rvert$$
 
-In general: $\displaystyle\left|\bigcup_{i=1}^n A_i\right| = \sum_{\emptyset \neq S \subseteq [n]} (-1)^{|S|+1} \left|\bigcap_{i \in S} A_i\right|$
+In general:
+$$\left\lvert\bigcup_{i=1}^n A_i\right\rvert = \sum_{\emptyset \neq S \subseteq [n]} (-1)^{\lvert S\rvert+1} \left\lvert\bigcap_{i \in S} A_i\right\rvert$$
 
 ### 4.3 Derangements
 
 A **derangement** of $\{1, \ldots, n\}$ is a permutation $\sigma$ with $\sigma(i) \neq i$ for all $i$. The number of derangements is:
 $$D(n) = n! \sum_{k=0}^{n} \frac{(-1)^k}{k!} \approx \frac{n!}{e}$$
 
-**Proof via inclusion-exclusion:** Let $A_i$ = permutations fixing $i$. Derangements = $n! - |A_1 \cup \cdots \cup A_n|$. Note $|A_{i_1} \cap \cdots \cap A_{i_k}| = (n-k)!$.
+**Proof via inclusion-exclusion:** Let $A_i$ = set of permutations fixing $i$. Derangements $= n! - \lvert A_1 \cup \cdots \cup A_n \rvert$.
+
+For any $k$-element index set $\{i_1, \ldots, i_k\}$, the permutations fixing all $k$ positions number $(n-k)!$, so $\lvert A_{i_1} \cap \cdots \cap A_{i_k} \rvert = (n-k)!$. There are $\binom{n}{k}$ such subsets. By inclusion-exclusion:
+$$\lvert A_1 \cup \cdots \cup A_n \rvert = \sum_{k=1}^n (-1)^{k-1} \binom{n}{k}(n-k)!$$
+
+Therefore:
+$$D(n) = n! - \sum_{k=1}^n (-1)^{k-1}\binom{n}{k}(n-k)! = \sum_{k=0}^n (-1)^k \binom{n}{k}(n-k)! = n!\sum_{k=0}^n \frac{(-1)^k}{k!} \qquad \square$$
 
 ---
 
@@ -223,7 +230,9 @@ Find a particular solution by guessing a form for $f(n)$ (polynomial, exponentia
 ### 6.1 Ordinary Generating Functions
 
 The **ordinary generating function (OGF)** of sequence $(a_n)_{n \geq 0}$ is:
+
 $$A(x) = \sum_{n=0}^{\infty} a_n x^n$$
+
 Treated as a formal power series (convergence not required for combinatorial purposes).
 
 **Standard OGFs:**
@@ -244,9 +253,14 @@ $$(1+x)^n = \sum_{k=0}^n \binom{n}{k} x^k$$
 3. Solve for $A(x)$ algebraically.
 4. Expand $A(x)$ (partial fractions etc.) to extract $a_n$.
 
-**Fibonacci example:** From $F_n = F_{n-1} + F_{n-2}$ (for $n \geq 2$):
+**Fibonacci derivation:** Multiply $F_n = F_{n-1} + F_{n-2}$ by $x^n$ and sum for $n \geq 2$:
+$$F(x) - F_0 - F_1 x = x(F(x) - F_0) + x^2 F(x)$$
+$$F(x) - x = xF(x) + x^2 F(x) \implies F(x)(1 - x - x^2) = x$$
 $$F(x) = \frac{x}{1 - x - x^2}$$
-Partial fractions: $F(x) = \frac{1}{\sqrt{5}}\left(\frac{1}{1-\phi x} - \frac{1}{1-\hat\phi x}\right)$, recovering Binet's formula.
+
+Partial fractions using roots $\phi = \frac{1+\sqrt{5}}{2}$, $\hat\phi = \frac{1-\sqrt{5}}{2}$ of $1-x-x^2$:
+$$F(x) = \frac{1}{\sqrt{5}}\left(\frac{1}{1-\phi x} - \frac{1}{1-\hat\phi x}\right) = \frac{1}{\sqrt{5}}\sum_{n\geq 0}(\phi^n - \hat\phi^n)x^n$$
+giving Binet's formula $F_n = \dfrac{\phi^n - \hat\phi^n}{\sqrt{5}}$.
 
 ---
 
@@ -343,6 +357,10 @@ This expresses $\gcd(a,b)$ as an **integer linear combination** of $a$ and $b$ (
 Every integer $n \geq 2$ can be written uniquely (up to ordering) as a product of primes:
 $$n = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}$$
 
+**Existence:** By strong induction. If $n$ is prime, done. Otherwise $n = ab$ with $1 < a, b < n$; by hypothesis both $a$ and $b$ have prime factorisations, so $n$ does too.
+
+**Uniqueness:** Suppose $n = p_1 p_2 \cdots p_r = q_1 q_2 \cdots q_s$ (listing with repetition). Since $p_1 \mid q_1 \cdots q_s$, by the cancellation lemma applied repeatedly (using that each $q_j$ is prime), $p_1 = q_j$ for some $j$. Cancel $p_1 = q_j$ from both sides; repeat by induction to get $r = s$ and the factorisations agree up to ordering. $\square$
+
 ---
 
 ## L10: Number Theory II — Modular Arithmetic and Congruences
@@ -370,12 +388,25 @@ The equation $ax \equiv b \pmod{n}$ has a solution iff $\gcd(a,n) \mid b$. When 
 $$x \equiv a_1 \pmod{m_1}, \quad x \equiv a_2 \pmod{m_2}, \quad \ldots, \quad x \equiv a_k \pmod{m_k}$$
 has a unique solution modulo $M = m_1 m_2 \cdots m_k$.
 
+**Proof (for $k=2$):** Let $\gcd(m,n)=1$. By Bezout, $\exists s,t \in \mathbb{Z}$ with $sm + tn = 1$. Set
+$$x_0 = a \cdot tn + b \cdot sm$$
+Then $x_0 \equiv a \cdot tn = a(1 - sm) \equiv a \pmod{m}$, and similarly $x_0 \equiv b \pmod{n}$.
+
+**Uniqueness:** If $x, x'$ are both solutions, then $m \mid x'-x$ and $n \mid x'-x$, so $mn \mid x'-x$ (since $\gcd(m,n)=1$). Hence $x \equiv x' \pmod{mn}$.
+
+For $k > 2$: apply the $k=2$ case iteratively (each step is valid since the moduli remain coprime). $\square$
+
 **Application:** Reduces computations mod $M$ to computations mod each $m_i$ separately.
 
 ### 10.4 Fermat's Little Theorem
 
 **Theorem:** For prime $p$ and $\gcd(a, p) = 1$:
 $$a^{p-1} \equiv 1 \pmod{p}$$
+
+**Proof:** Consider the $p-1$ nonzero residues $S = \{1, 2, \ldots, p-1\}$ and the set $aS = \{a, 2a, \ldots, (p-1)a\} \pmod{p}$. Since $\gcd(a,p)=1$, multiplication by $a$ is a bijection on $\mathbb{Z}/p\mathbb{Z} \setminus \{0\}$, so $aS = S \pmod{p}$. Multiplying all elements:
+$$a \cdot 2a \cdots (p-1)a \equiv 1 \cdot 2 \cdots (p-1) \pmod{p}$$
+$$a^{p-1} \cdot (p-1)! \equiv (p-1)! \pmod{p}$$
+Cancelling $(p-1)!$ (which is coprime to $p$): $a^{p-1} \equiv 1 \pmod{p}$. $\square$
 
 **Corollary:** For any prime $p$ and any $a$: $a^p \equiv a \pmod{p}$.
 
@@ -400,6 +431,10 @@ $$\varphi(n) = n \prod_{p \mid n,\, p \text{ prime}} \left(1 - \frac{1}{p}\right
 ### 11.2 Euler's Theorem
 
 **Theorem:** If $\gcd(a, n) = 1$, then $a^{\varphi(n)} \equiv 1 \pmod{n}$.
+
+**Proof:** Let $S = \{r_1, r_2, \ldots, r_{\varphi(n)}\}$ be the set of residues mod $n$ that are coprime to $n$. Since $\gcd(a,n)=1$, for each $r_i \in S$ we have $\gcd(ar_i, n)=1$, so $ar_i \bmod n \in S$. The map $r_i \mapsto ar_i \bmod n$ is injective (if $ar_i \equiv ar_j$ then $r_i \equiv r_j$ by cancellation), hence a bijection on $S$. Therefore $\{ar_1, \ldots, ar_{\varphi(n)}\} \equiv S \pmod{n}$ and:
+$$a^{\varphi(n)} \cdot r_1 r_2 \cdots r_{\varphi(n)} \equiv r_1 r_2 \cdots r_{\varphi(n)} \pmod{n}$$
+Cancelling $r_1 \cdots r_{\varphi(n)}$ (each $r_i$ is coprime to $n$, so their product is too): $a^{\varphi(n)} \equiv 1 \pmod{n}$. $\square$
 
 (Fermat's Little Theorem is the special case $n = p$ prime, $\varphi(p) = p-1$.)
 
