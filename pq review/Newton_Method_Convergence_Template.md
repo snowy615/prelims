@@ -112,7 +112,7 @@ $$n \approx \log_2\left(\log_{1/(K|e_0|)}\frac{1}{K\varepsilon}\right)$$
 
 Given $|e_0| \le 0.1$ and $K = \frac{15}{14}$:
 
-| Step | Bound on $|e_n|$ |
+| Step | Bound on $\lvert e_n \rvert$ |
 |------|------------------|
 | $n=0$ | $0.1$ |
 | $n=1$ | $\frac{15}{14}(0.1)^2 \approx 0.0107$ |
@@ -199,9 +199,9 @@ In multivariate problems, double-check partial derivatives. For $f(x,y)$:
 - The Hessian $H$ has $H_{11} = \frac{\partial^2 f}{\partial x^2}$, $H_{12} = H_{21} = \frac{\partial^2 f}{\partial x \partial y}$.
 
 ### Error 3: Inverting the Jacobian Incorrectly
-For $2 \times 2$ matrix $J = \begin{pmatrix} a & b \ c & d \end{pmatrix}$:
+For $2 \times 2$ matrix $J = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$:
 
-$$J^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d & -b \ -c & a \end{pmatrix}$$
+$$J^{-1} = \frac{1}{ad-bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$$
 
 **Check**: $\det J = ad - bc$. For Newton on optimization, $J = H$ (Hessian), so $\det H = H_{11}H_{22} - H_{12}^2$.
 
